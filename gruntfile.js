@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         inline: {
           dist: {
             src: 'src/index.html',
-            dest: 'dist/index.html'
+          
           }
         }
     });
