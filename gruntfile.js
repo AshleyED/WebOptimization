@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-inline');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -13,16 +14,21 @@ module.exports = function(grunt) {
         },
 
         cssmin: {
-            target: {
-                src: 'css/style.css',
-                dest: 'css/style.min.css',
-              }
+          target: {
+              src: 'css/style.css',
+              dest: 'css/style.min.css',
             }
-          
+        },
 
+        inline: {
+          dist: {
+            src: 'src/index.html',
+            dest: 'dist/index.html'
+          }
+        }
     });
 
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['uglify, cssmin, inline']);
 
 };
 
