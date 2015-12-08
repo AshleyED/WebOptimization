@@ -464,7 +464,7 @@ var resizePizzas = function(size) {
       default:
         console.log("bug in sizeSwitcher");
     }
-    var randomContainer = document.querySelectorAll(".randomPizzaContainer");
+    var randomContainer = document.getElementsByClassName("randomPizzaContainer");
 
     for (var i = 0; i < randomContainer.length; i++) {
       randomContainer[i].style.width = newWidth + "%";
@@ -535,6 +535,9 @@ function updatePositions() {
   for (i = 0; i < items.length; i++) {
       var phase = phaseArray[i % 5];
       items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+      //items[i].style.transform = 'translateX(100px)';
+      //items[i].style.transform = items[i].translateX+ 100 * phase + 'px';
+      //items[i].style.transform = 'translateX(' + items[i].basicLeft + 100 * phase + 'px' + ')';
   }
 
   window.performance.mark("mark_start_frame");
@@ -556,7 +559,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
