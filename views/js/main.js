@@ -513,6 +513,15 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 
+function scrollingAnimationFrameRequest() {
+  if (!animating) {
+    window.requestAnimationFrame(updatePositions);
+    animating = true;
+  }
+}
+
+window.requestAnimationFrame(updatePositions);
+
 function updatePositions() {
   frame++;
 
@@ -534,10 +543,7 @@ function updatePositions() {
 
   for (i = 0; i < items.length; i++) {
       var phase = phaseArray[i % 5];
-      items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-      //items[i].style.transform = 'translateX(100px)';
-      //items[i].style.transform = items[i].translateX+ 100 * phase + 'px';
-      //items[i].style.transform = 'translateX(' + items[i].basicLeft + 100 * phase + 'px' + ')';
+      items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   }
 
   window.performance.mark("mark_start_frame");
@@ -550,6 +556,7 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
+  animating = false;
 }
 
 // runs updatePositions on scroll
@@ -565,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
