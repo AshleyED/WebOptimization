@@ -513,10 +513,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 
+//Corrections for requestAnimationFrame provided by Matthew Prather
+window.animating = false;
+
 function scrollingAnimationFrameRequest() {
-  if (!animating) {
+  if (!window.animating) {
+    window.animating = true;
     window.requestAnimationFrame(updatePositions);
-    animating = true;
   }
 }
 
@@ -556,7 +559,7 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
-  animating = false;
+  window.animating = false;
 }
 
 // runs updatePositions on scroll
