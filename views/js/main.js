@@ -516,6 +516,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 //Corrections for requestAnimationFrame provided by Matthew Prather
 window.animating = false;
 
+//Function decreases the amount of time browser spends on "paint" before continuing to render the page
 function scrollingAnimationFrameRequest() {
   if (!window.animating) {
     window.animating = true;
@@ -525,6 +526,9 @@ function scrollingAnimationFrameRequest() {
 
 window.requestAnimationFrame(updatePositions);
 
+//Function updates the position of the background pizzas when scrolling
+//Framework for updatePositions optimization provided by Matthew Prather
+//https://gist.github.com/prather-mcs/05526bb379f845ee2ba1
 function updatePositions() {
   frame++;
 
@@ -532,14 +536,13 @@ function updatePositions() {
 // at a higher, longer-lived scope than `updatePositions`, because `items`
 // will never be a different value at any point in time after the "mover"
 // pizzas have been placed on the page:
-//Framework for updatePositions optimization provided by Matthew Prather
-//https://gist.github.com/prather-mcs/05526bb379f845ee2ba1
   var items = document.getElementsByClassName('mover');
   var phaseTop = document.body.scrollTop;
   var phaseArray = [];
 
   var i;
 
+  //for loops generate placement of background pizzas and animate them onto the background
   for (i = 0; i < 5; i++) {
     phaseArray.push(Math.sin((phaseTop / 1250) + i));
   }

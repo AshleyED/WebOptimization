@@ -1,3 +1,41 @@
+***How to open the application***
+
+To load the application, simply open the index.html file with a browser, such
+as Chrome or Firefox. The application will begin to run automatically.
+
+***Changes made to optimize index.html***
+  1) Added "async" to google analytics
+  2) Added 'media = "print" ' to print.CSS
+  3) Minified perfmatters.js with Grunt
+  4) Minified style.css with Grunt
+  5) Resized and compressed images with ImageMagick
+  6) Deleted external font link and inlined font API
+  7) Inlined style.css into index.html with Grunt
+
+***Changes made to optimize pizza.html***
+  1) Changes in updatePositions function:
+    a) Changed from 200 pizzas to 30 pizzas in document.addEventListener
+    b) Changed querySelectorAll to getElementsByClassName
+    c) Moved items declaration and document.body.scrollTop outside of the function's for loop
+    d) Moved window.performance.mark("mark_start_frame"); after the for loop
+    e) Separated original for loop into two for loops
+    f) Replaced items[i].style.left with items[i].style.transform and added transformX code
+    g) Replaced elem.basicLeft = (i % cols) * s; with elem.style.left = (i % cols) * s + 'px';
+    h) Added requestAnimationFrame function
+
+  2) Changes in changePizzaSizes function:
+    a) Removed newwidth from for loop and created switch-case to establish percentages and determine size
+    b) Removed dx from for loop, no longer necessary after establishing sizes in switch-case
+    c) Created randomContainer variable to calculate document.getElementsByClassName("randomPizzaContainer") outside of for loop
+    d) Changed querySelectorAll to getElementsByClassName
+
+  3) Other:
+    a) Added backface-visibility: hidden; to views/css/style.css
+
+**********************************************************************************************************************************
+
+***Original project instructions/information***
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
@@ -32,7 +70,7 @@ Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
 ####Part 2: Optimize Frames per Second in pizza.html
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js.
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
