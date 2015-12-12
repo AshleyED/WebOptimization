@@ -14,23 +14,19 @@ module.exports = function(grunt) {
         },
 
         cssmin: {
-          target: {
+            target: {
               src: 'css/style.css',
               dest: 'css/style.min.css',
             }
         },
 
         inline: {
-          dist: {
-            src: 'src/index.html',
-          
-          }
+            dist: {
+              src: 'src/index.html',
+            }
         }
     });
 
     grunt.registerTask('default', ['uglify, cssmin, inline']);
 
 };
-
-
-//https://24ways.org/2013/grunt-is-not-weird-and-hard#fn4987692805470b0b5865df-2
