@@ -34,7 +34,7 @@ as Chrome or Firefox. The application will begin to run automatically.
 
 **********************************************************************************************************************************
 
-***Original project instructions/information***
+***Original project instructions and information***
 
 ## Website Performance Optimization portfolio project
 
